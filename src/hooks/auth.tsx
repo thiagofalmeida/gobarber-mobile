@@ -54,9 +54,7 @@ const AuthProvider: React.FC = ({ children }) => {
       password,
     });
 
-    const { token, mappedUser } = response.data;
-
-    const user = mappedUser;
+    const { token, user } = response.data;
 
     await AsyncStorage.multiSet([
       ['@GoBarber:token', token],
