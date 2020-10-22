@@ -20,6 +20,12 @@ import {
   Title,
   OpenDatePickerButton,
   OpenDatePickerText,
+  Schedule,
+  Section,
+  SectionTitle,
+  SectionContent,
+  HourText,
+  Hour,
 } from './styles';
 
 import { useAuth } from '../../hooks/auth';
@@ -50,6 +56,7 @@ const CreateAppointment: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availability, setAvailability] = useState<AvailabilityItem[]>([]);
+  const [selectedHour, setSelectedHour] = useState(0);
 
   const [selectedProvider, setSelectedProvider] = useState<string>(
     params.providerId,
@@ -163,9 +170,47 @@ const CreateAppointment: React.FC = () => {
         )}
       </Calendar>
 
-      {morningAvailability.map(({ hourFormatted, available }) => (
-        <Title key={hourFormatted}>{hourFormatted}</Title>
-      ))}
+      <Schedule>
+        <Title>Escolha o horário</Title>
+
+        <Section>
+          <SectionTitle>Manhã</SectionTitle>
+
+          <SectionContent>
+            {morningAvailability.map(({ hourFormatted, hour, available }) => (
+              <Hour
+                available={available}
+                selected={hour === selectedHour}
+                onPress={() => setSelectedHour(hour)}
+                key={hourFormatted}
+              >
+                <HourText selected={hour === selectedHour}>
+                  {hourFormatted}
+                </HourText>
+              </Hour>
+            ))}
+          </SectionContent>
+        </Section>
+
+        <Section>
+          <SectionTitle>Tarde</SectionTitle>
+
+          <SectionContent>
+            {afternoonAvailability.map(({ hourFormatted, hour, available }) => (
+              <Hour
+                available={available}
+                selected={hour === selectedHour}
+                onPress={() => setSelectedHour(hour)}
+                key={hourFormatted}
+              >
+                <HourText selected={hour === selectedHour}>
+                  {hourFormatted}
+                </HourText>
+              </Hour>
+            ))}
+          </SectionContent>
+        </Section>
+      </Schedule>
     </Container>
   );
 };
