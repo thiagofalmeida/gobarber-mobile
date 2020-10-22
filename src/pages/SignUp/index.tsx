@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   TextInput,
-  Alert
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
@@ -22,12 +22,7 @@ import Button from '../../components/Button';
 
 import logoImg from '../../assets/logo.png';
 
-import {
-  Container,
-  Title,
-  BackToSignInText,
-  BackToSignIn
-} from './styles';
+import { Container, Title, BackToSignInText, BackToSignIn } from './styles';
 
 interface SignUpFormData {
   name: string;
@@ -63,7 +58,7 @@ const SignUp: React.FC = () => {
 
         Alert.alert(
           'Cadastro realizado!',
-          'Você já pode fazer seu logon no GoBarber'
+          'Você já pode fazer seu logon no GoBarber',
         );
 
         navigation.goBack();
@@ -77,22 +72,23 @@ const SignUp: React.FC = () => {
 
         Alert.alert(
           'Erro no cadastro',
-          'Ocorreu um erro ao fazer o cadastro, tente novamente'
+          'Ocorreu um erro ao fazer o cadastro, tente novamente',
         );
       }
-    },[navigation],
+    },
+    [navigation],
   );
 
   return (
     <>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        style={{flex: 1}}
+        style={{ flex: 1 }}
         enabled
       >
         <ScrollView
           keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{ flex:1 }}
+          contentContainerStyle={{ flex: 1 }}
         >
           <Container>
             <Image source={logoImg} />
@@ -142,12 +138,15 @@ const SignUp: React.FC = () => {
                 Cadastrar
               </Button>
             </Form>
-
           </Container>
         </ScrollView>
 
-        <BackToSignIn onPress={() => { navigation.goBack() }}>
-          <Icon name="arrow-left" size={20} color="#fff"/>
+        <BackToSignIn
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <Icon name="arrow-left" size={20} color="#fff" />
           <BackToSignInText>Voltar para logon</BackToSignInText>
         </BackToSignIn>
       </KeyboardAvoidingView>

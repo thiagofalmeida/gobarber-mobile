@@ -6,10 +6,7 @@ import { useAuth } from '../../hooks/auth';
 const AppointmentCreated: React.FC = () => {
   const { user } = useAuth();
 
-  return (
-    <View>
-    </View>
-  );
+  return <View />;
 };
 
 export default AppointmentCreated;

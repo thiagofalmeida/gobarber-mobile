@@ -6,9 +6,7 @@ import { useAuth } from '../../hooks/auth';
 const Profile: React.FC = () => {
   const { user } = useAuth();
 
-  return (
-    <View></View>
-  );
+  return <View />;
 };
 
 export default Profile;
